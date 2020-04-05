@@ -38,6 +38,7 @@ longest = 0
                 chars.remove(string[left])
                 left += 1
         return longest
+
 --------------------------------------------------------------------------------
 Add Two Numbers (Linked List)
 --------------------------------------------------------------------------------
@@ -122,3 +123,50 @@ class Solution:
                 x -= 1
             MAX = max(MAX, area)
         return MAX
+
+--------------------------------------------------------------------------------
+Most Common Word
+--------------------------------------------------------------------------------
+Input:
+paragraph = "Bob hit a ball, the hit BALL flew far after it was hit."
+banned = ["hit"]
+Output: "ball"
+Explanation:
+"hit" occurs 3 times, but it is a banned word.
+"ball" occurs twice (and no other word does), so it is the most frequent non-banned word in the paragraph.
+Note that words in the paragraph are not case sensitive,
+that punctuation is ignored (even if adjacent to words, such as "ball,"),
+and that "hit" isn't the answer even though it occurs more because it is banned.
+
+class Solution:
+    def mostCommonWord(self, paragraph: str, banned: List[str]) -> str:
+        banset = set(banned)
+        for c in "!?',;.":
+            paragraph = paragraph.replace(c, " ")
+        count = collections.Counter(
+            word for word in paragraph.lower().split())
+
+        ans, best = '', 0
+        for word in count:
+            if count[word] > best and word not in banset:
+                ans, best = word, count[word]
+
+        return ans
+
+--------------------------------------------------------------------------------
+ Reorder Log Files
+--------------------------------------------------------------------------------
+Input: logs = ["dig1 8 1 5 1","let1 art can","dig2 3 6","let2 own kit dig","let3 art zero"]
+Output: ["let1 art can","let3 art zero","let2 own kit dig","dig1 8 1 5 1","dig2 3 6"]
+
+class Solution:
+    def reorderLogFiles(self, logs: List[str]) -> List[str]:
+        def f(log):
+            id_, rest = log.split(" ", 1)
+            return (0, rest, id_) if rest[0].isalpha() else (1,)
+
+        return sorted(logs, key = f)
+
+--------------------------------------------------------------------------------
+ Reorder Log Files
+--------------------------------------------------------------------------------
