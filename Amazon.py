@@ -213,11 +213,11 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
+        #Transpose the matrix and reverse the rows.
         n = len(matrix)
         for i in range(n):
             for j in range(n):
                 if i < j:
-                    matrix[i][j] = matrix[j][i]
-                    matrix[j][i] = matrix[i][j]
+                    matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
         for l in matrix:
             l.reverse()
