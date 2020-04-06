@@ -365,5 +365,26 @@ class Solution:
         return not stack
 
 --------------------------------------------------------------------------------
-Valid Parentheses
+First Unique Character in a String
+--------------------------------------------------------------------------------
+s = "leetcode"
+return 0.
+
+s = "loveleetcode",
+return 2.
+
+class Solution:
+    def firstUniqChar(self, s: str) -> int:
+        # build hash map : character and how often it appears
+        count = collections.Counter(s)
+
+        # find the index
+        for idx, ch in enumerate(s):
+            if count[ch] == 1:
+                return idx
+        return -1
+# Time complexity : \mathcal{O}(N)O(N) since we go through the string of length N two times.
+# Space complexity : \mathcal{O}(N)O(N) since we have to keep a hash map with N elements.
+--------------------------------------------------------------------------------
+First Unique Character in a String
 --------------------------------------------------------------------------------
