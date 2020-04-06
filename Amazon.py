@@ -386,5 +386,30 @@ class Solution:
 # Time complexity : \mathcal{O}(N)O(N) since we go through the string of length N two times.
 # Space complexity : \mathcal{O}(N)O(N) since we have to keep a hash map with N elements.
 --------------------------------------------------------------------------------
-First Unique Character in a String
+Missing Number
+--------------------------------------------------------------------------------
+Input: [3,0,1]
+Output: 2
+
+Input: [9,6,4,2,3,5,7,0,1]
+Output: 8
+
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        nums.sort()
+        if nums[0] == 0:
+            if(len(nums) == 1 and nums[0] != 0):
+                return nums[0] - 1
+            elif(len(nums) == 1 and nums[0] == 0):
+                return 1
+            else:
+                for i in range(len(nums)-1):
+                    if(nums[i] + 1 != nums[i+1]):
+                        return nums[i] + 1
+                return nums[i] + 2
+        else:
+            return 0
+
+--------------------------------------------------------------------------------
+Missing Number
 --------------------------------------------------------------------------------
