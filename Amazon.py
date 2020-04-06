@@ -314,5 +314,36 @@ class Solution:
         return 0
 
 --------------------------------------------------------------------------------
-Compare Version Numbers
+Rotate Image
+--------------------------------------------------------------------------------
+Given input matrix =
+[
+  [1,2,3],
+  [4,5,6],
+  [7,8,9]
+],
+
+rotate the input matrix in-place such that it becomes:
+[
+  [7,4,1],
+  [8,5,2],
+  [9,6,3]
+]
+
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        #Transpose the matrix and reverse the rows.
+        n = len(matrix)
+        for i in range(n):
+            for j in range(n):
+                if i < j:
+                    matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+        for l in matrix:
+            l.reverse()
+
+--------------------------------------------------------------------------------
+Rotate Image
 --------------------------------------------------------------------------------
