@@ -436,5 +436,32 @@ class Solution:
         return -1
 
 --------------------------------------------------------------------------------
-Implement strStr()
+3Sum Closest
+--------------------------------------------------------------------------------
+Given array nums = [-1, 2, 1, -4], and target = 1.
+The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
+https://leetcode.com/explore/interview/card/amazon/76/array-and-strings/2967/discuss/7913/Python-solution-with-detailed-explanation
+
+Two pointer solution with O(n2) complexity
+
+class Solution:
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
+        nums.sort()
+        closest_sum = 2**31-1
+        for i in range(len(nums)):
+            j,k = i+1, len(nums)-1
+            while j<k:
+                curr_sum = nums[i] + nums[j] + nums[k]
+                if curr_sum == target:
+                    return curr_sum
+                if abs(curr_sum-target) < abs(closest_sum-target):
+                    closest_sum = curr_sum
+                if curr_sum < target:
+                    j = j+1
+                else:
+                    k = k-1
+        return closest_sum
+
+--------------------------------------------------------------------------------
+3Sum Closest
 --------------------------------------------------------------------------------
