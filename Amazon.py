@@ -411,5 +411,30 @@ class Solution:
             return 0
 
 --------------------------------------------------------------------------------
-Missing Number
+Implement strStr()
+--------------------------------------------------------------------------------
+Input: haystack = "hello", needle = "ll"
+Output: 2
+
+Input: haystack = "aaaaa", needle = "bba"
+Output: -1
+
+class Solution:
+    def strStr(self, haystack: str, needle: str) -> int:
+        hay_size = len(haystack)
+        needle_size = len(needle)
+        pointer = 0
+        if(needle_size == 0):
+            return 0
+        else:
+            for i in range(hay_size):
+                j = 1
+                if(needle[0] == haystack[i]):
+                    pointer = i
+                    if(needle == haystack[i:i+needle_size]):
+                        return pointer
+        return -1
+
+--------------------------------------------------------------------------------
+Implement strStr()
 --------------------------------------------------------------------------------
