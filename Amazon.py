@@ -742,5 +742,32 @@ class Solution:
         return result.next
 
 --------------------------------------------------------------------------------
-Add Two Numbers
+Reverse Linked List
+--------------------------------------------------------------------------------
+
+Input: 1->2->3->4->5->NULL
+Output: 5->4->3->2->1->NULL
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        prev = None
+        while head:
+            curr = head
+            head = head.next
+            curr.next = prev
+            prev = curr
+        return prev
+
+# Time complexity : O(n)O(n). Assume that nn is the list's length, the time complexity is O(n)O(n).
+# 
+# Space complexity : O(1)O(1).
+
+--------------------------------------------------------------------------------
+Reverse Linked List
 --------------------------------------------------------------------------------
