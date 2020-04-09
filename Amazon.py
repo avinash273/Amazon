@@ -906,5 +906,38 @@ class Solution:
 # Space Complexity : O(1)O(1)
 
 --------------------------------------------------------------------------------
- Copy List with Random Pointer
+Reverse Integer
+--------------------------------------------------------------------------------
+
+Input: -123
+Output: -321
+
+Input: 120
+Output: 21
+
+class Solution:
+    def reverse(self, x: int) -> int:
+        flag = 0
+        if x < 0:
+            x *= -1
+            flag = 1
+
+        var = str(x)
+        var = var[::-1]
+
+        if(flag == 1):
+            neg_val = -1 * int(var)
+            if neg_val < -2147483648:
+                return 0
+            else:
+                return neg_val
+        else:
+            pos_val = int(var)
+            if pos_val > 2147483647:
+                return 0
+            else:
+                return pos_val
+
+--------------------------------------------------------------------------------
+Reverse Integer
 --------------------------------------------------------------------------------
