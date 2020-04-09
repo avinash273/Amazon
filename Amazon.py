@@ -679,5 +679,47 @@ Time complexity : O(n). Intuitively the output is proportional to the number N o
 Space complexity : O(1) since the output is just a string.
 
 --------------------------------------------------------------------------------
-Integer to English Words
+
+Linked List Questions
+
 --------------------------------------------------------------------------------
+Merge Two Sorted Lists
+--------------------------------------------------------------------------------
+
+Input: 1->2->4, 1->3->4
+Output: 1->1->2->3->4->4
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+        # maintain an unchanging reference to node ahead of the return node.
+        prehead = ListNode()
+        prev = prehead
+
+        while l1 and l2:
+            if l1.val <= l2.val:
+                prev.next = l1
+                l1 = l1.next
+            else:
+                prev.next = l2
+                l2 = l2.next
+            prev = prev.next
+
+        # exactly one of l1 and l2 can be non-null at this point, so connect
+        # the non-null list to the end of the merged list.
+        prev.next = l1 if l1 is not None else l2
+
+        return prehead.next
+
+# Time complexity : O(n + m)
+
+# Because exactly one of l1 and l2 is incremented on each loop iteration, the while loop runs for a number of iterations equal to the sum of the lengths of the two lists. All other work is constant, so the overall complexity is linear.
+
+# Space complexity : O(1)
+
+# The iterative approach only allocates a few pointers, so it has a constant overall memory footprint.
