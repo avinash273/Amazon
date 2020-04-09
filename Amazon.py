@@ -765,9 +765,84 @@ class Solution:
         return prev
 
 # Time complexity : O(n)O(n). Assume that nn is the list's length, the time complexity is O(n)O(n).
-# 
+#
 # Space complexity : O(1)O(1).
 
 --------------------------------------------------------------------------------
-Reverse Linked List
+Merge k Sorted Lists
+--------------------------------------------------------------------------------
+
+Input:
+[
+  1->4->5,
+  1->3->4,
+  2->6
+]
+Output: 1->1->2->3->4->4->5->6
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+        self.nodes = []
+        head = point = ListNode(0)
+        for l in lists:
+            while l:
+                self.nodes.append(l.val)
+                l = l.next
+        for x in sorted(self.nodes):
+            point.next = ListNode(x)
+            point = point.next
+        return head.next
+
+# Time complexity : O(N\log N)O(NlogN) where NN is the total number of nodes.
+
+# Collecting all the values costs O(N)O(N) time.
+# A stable sorting algorithm costs O(N\log N)O(NlogN) time.
+# Iterating for creating the linked list costs O(N)O(N) time.
+# Space complexity : O(N)O(N).
+
+# Sorting cost O(N)O(N) space (depends on the algorithm you choose).
+# Creating a new linked list costs O(N)O(N) space.
+
+--------------------------------------------------------------------------------
+Reverse Nodes in k-Group
+--------------------------------------------------------------------------------
+
+Given this linked list: 1->2->3->4->5
+For k = 2, you should return: 2->1->4->3->5
+For k = 3, you should return: 3->2->1->4->5
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
+        l, node = 0, head
+        while node:
+            l += 1
+            node = node.next
+        if k <= 1 or l < k:
+            return head
+        node, cur = None, head
+        for _ in range(k):
+            nxt = cur.next
+            cur.next = node
+            node = cur
+            cur = nxt
+        head.next = self.reverseKGroup(cur, k)
+        return node
+
+
+
+--------------------------------------------------------------------------------
+Reverse Nodes in k-Group
 --------------------------------------------------------------------------------
